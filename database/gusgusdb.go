@@ -12,15 +12,15 @@ import (
 
 var (
 	usr      = "admin"
-	pwd      = "1qaz%40WSX"
-	host     = "localhost"
+	pwd      = "hwKH6yxgsqjteKES"
+	host     = "cluster0.4rzdg.mongodb.net/myFirstDatabase"
 	port     = 27017
 	database = "gusgusDB"
 )
 
 func GetCollection(collection string) *mongo.Collection {
 
-	uri := fmt.Sprintf("mongodb://%s:%s@%s:%d", usr, pwd, host, port)
+	uri := fmt.Sprintf("mongodb+srv://%s:%s@%s:%d", usr, pwd, host, port)
 	client, err := mongo.NewClient(options.Client().ApplyURI(uri))
 
 	if err != nil {
