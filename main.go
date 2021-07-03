@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/gorilla/mux"
 
@@ -55,6 +56,7 @@ func uploadFile(w http.ResponseWriter, r *http.Request) {
 }
 
 func handler() {
+	port := os.Getenv("PORT")
 	r := mux.NewRouter()
 
 	r.HandleFunc("/api/user", services.SearchUser).Methods("GET")
@@ -83,7 +85,7 @@ func handler() {
 	r.PathPrefix(staticDir).Handler(http.StripPrefix(staticDir, http.FileServer(http.Dir("."+staticDir))))
 
 	fmt.Println("Start server golang ...")
-	log.Fatal(http.ListenAndServe(":8080", r))
+	log.Fatal(http.ListenAndServe(":"+port, r))
 }
 
 func main() {
