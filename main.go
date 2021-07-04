@@ -5,8 +5,6 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
-	"net/http/httputil"
-	"net/url"
 	"os"
 
 	"github.com/gorilla/mux"
@@ -58,17 +56,17 @@ func uploadFile(w http.ResponseWriter, r *http.Request) {
 }
 
 func newRouters() {
-	target := "https://gusts-project.herokuapp.com"
-	remote, err := url.Parse(target)
-	if err != nil {
-		panic(err)
-	}
+	// target := "https://gusts-project.herokuapp.com"
+	// remote, err := url.Parse(target)
+	// if err != nil {
+	// 	panic(err)
+	// }
 
-	proxy := httputil.NewSingleHostReverseProxy(remote)
+	// proxy := httputil.NewSingleHostReverseProxy(remote)
 
 	r := mux.NewRouter()
 
-	r.HandleFunc("/forward/{rest:.*}", handler(proxy))
+	// r.HandleFunc("/forward/{rest:.*}", handler(proxy))
 	r.HandleFunc("/api/user", services.SearchUser).Methods("GET")
 	r.HandleFunc("/api/userJoin/{id}", services.GetJoin).Methods("GET")
 	r.HandleFunc("/api/user/{id}", services.GetUser).Methods("GET")
@@ -100,12 +98,12 @@ func newRouters() {
 	log.Fatal(http.ListenAndServe(":"+port, r))
 }
 
-func handler(p *httputil.ReverseProxy) func(http.ResponseWriter, *http.Request) {
-	return func(w http.ResponseWriter, r *http.Request) {
-		r.URL.Path = mux.Vars(r)["rest"]
-		p.ServeHTTP(w, r)
-	}
-}
+// func handler(p *httputil.ReverseProxy) func(http.ResponseWriter, *http.Request) {
+// 	return func(w http.ResponseWriter, r *http.Request) {
+// 		r.URL.Path = mux.Vars(r)["rest"]
+// 		p.ServeHTTP(w, r)
+// 	}
+// }
 
 func main() {
 	newRouters()
