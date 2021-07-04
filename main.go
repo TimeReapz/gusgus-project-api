@@ -67,12 +67,12 @@ func newRouters() {
 	r := mux.NewRouter()
 
 	// r.HandleFunc("/forward/{rest:.*}", handler(proxy))
-	r.HandleFunc("/api/user", services.SearchUser).Methods("GET")
-	r.HandleFunc("/api/userJoin/{id}", services.GetJoin).Methods("GET")
-	r.HandleFunc("/api/user/{id}", services.GetUser).Methods("GET")
-	r.HandleFunc("/api/user", services.InsertUser).Methods("POST")
-	r.HandleFunc("/api/user/{id}", services.UpdateUser).Methods("PATCH")
-	r.HandleFunc("/api/user/{id}", services.DeleteUser).Methods("DELETE")
+	r.HandleFunc("/api/user", services.SearchUser).Methods("GET", "OPTIONS")
+	r.HandleFunc("/api/userJoin/{id}", services.GetJoin).Methods("GET", "OPTIONS")
+	r.HandleFunc("/api/user/{id}", services.GetUser).Methods("GET", "OPTIONS")
+	r.HandleFunc("/api/user", services.InsertUser).Methods("POST", "OPTIONS")
+	r.HandleFunc("/api/user/{id}", services.UpdateUser).Methods("PATCH", "OPTIONS")
+	r.HandleFunc("/api/user/{id}", services.DeleteUser).Methods("DELETE", "OPTIONS")
 
 	r.HandleFunc("/api/product", services.SearchProduct).Methods("GET")
 	r.HandleFunc("/api/product/{id}", services.GetProduct).Methods("GET")
