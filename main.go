@@ -74,19 +74,19 @@ func newRouters() {
 	r.HandleFunc("/api/user/{id}", services.UpdateUser).Methods("PATCH", "OPTIONS")
 	r.HandleFunc("/api/user/{id}", services.DeleteUser).Methods("DELETE", "OPTIONS")
 
-	r.HandleFunc("/api/product", services.SearchProduct).Methods("GET")
-	r.HandleFunc("/api/product/{id}", services.GetProduct).Methods("GET")
-	r.HandleFunc("/api/product", services.InsertProduct).Methods("POST")
-	r.HandleFunc("/api/product/{id}", services.UpdateProduct).Methods("PATCH")
-	r.HandleFunc("/api/product/{id}", services.DeleteProduct).Methods("DELETE")
+	r.HandleFunc("/api/product", services.SearchProduct).Methods("GET", "OPTIONS")
+	r.HandleFunc("/api/product/{id}", services.GetProduct).Methods("GET", "OPTIONS")
+	r.HandleFunc("/api/product", services.InsertProduct).Methods("POST", "OPTIONS")
+	r.HandleFunc("/api/product/{id}", services.UpdateProduct).Methods("PATCH", "OPTIONS")
+	r.HandleFunc("/api/product/{id}", services.DeleteProduct).Methods("DELETE", "OPTIONS")
 
-	r.HandleFunc("/api/order", services.SearchOrder).Methods("GET")
-	r.HandleFunc("/api/order/{id}", services.GetOrder).Methods("GET")
-	r.HandleFunc("/api/order", services.InsertOrder).Methods("POST")
-	r.HandleFunc("/api/order/{id}", services.UpdateOrder).Methods("PATCH")
-	r.HandleFunc("/api/product/{id}", services.DeleteOrder).Methods("DELETE")
+	r.HandleFunc("/api/order", services.SearchOrder).Methods("GET", "OPTIONS")
+	r.HandleFunc("/api/order/{id}", services.GetOrder).Methods("GET", "OPTIONS")
+	r.HandleFunc("/api/order", services.InsertOrder).Methods("POST", "OPTIONS")
+	r.HandleFunc("/api/order/{id}", services.UpdateOrder).Methods("PATCH", "OPTIONS")
+	r.HandleFunc("/api/product/{id}", services.DeleteOrder).Methods("DELETE", "OPTIONS")
 
-	r.HandleFunc("/api/upload", uploadFile).Methods("POST")
+	r.HandleFunc("/api/upload", uploadFile).Methods("POST", "OPTIONS")
 
 	// Create the route public
 	staticDir := "/public/"
