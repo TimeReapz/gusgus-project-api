@@ -86,7 +86,7 @@ func newRouters() {
 	r.HandleFunc("/api/order/{id}", services.UpdateOrder).Methods("PATCH", "OPTIONS")
 	r.HandleFunc("/api/product/{id}", services.DeleteOrder).Methods("DELETE", "OPTIONS")
 
-	r.HandleFunc("/api/upload", uploadFile).Methods("POST", "OPTIONS")
+	r.HandleFunc("/api/upload", uploadFile).Methods("POST")
 
 	// Create the route public
 	staticDir := "/public/"
