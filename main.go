@@ -25,7 +25,7 @@ func uploadFile(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Println("Error Retrieving the File")
 		fmt.Println(err)
-		services.WriteResponse(w, http.StatusBadRequest, err.Error())
+		services.WriteResponseUpload(w, http.StatusBadRequest, err.Error())
 		return
 	}
 	defer file.Close()
@@ -38,7 +38,7 @@ func uploadFile(w http.ResponseWriter, r *http.Request) {
 	tempFile, err := ioutil.TempFile("public/files/images", "upload-*.png")
 	if err != nil {
 		fmt.Println(err)
-		services.WriteResponse(w, http.StatusBadRequest, err.Error())
+		services.WriteResponseUpload(w, http.StatusBadRequest, err.Error())
 	}
 	defer tempFile.Close()
 
@@ -47,12 +47,12 @@ func uploadFile(w http.ResponseWriter, r *http.Request) {
 	fileBytes, err := ioutil.ReadAll(file)
 	if err != nil {
 		fmt.Println(err)
-		services.WriteResponse(w, http.StatusBadRequest, err.Error())
+		services.WriteResponseUpload(w, http.StatusBadRequest, err.Error())
 	}
 	// write this byte array to our temporary file
 	tempFile.Write(fileBytes)
 	// return that we have successfully uploaded our file!
-	services.WriteResponse(w, http.StatusOK, tempFile.Name())
+	services.WriteResponseUpload(w, http.StatusOK, tempFile.Name())
 }
 
 func newRouters() {
