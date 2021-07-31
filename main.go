@@ -5,7 +5,6 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
-	"os"
 
 	"github.com/gorilla/mux"
 
@@ -86,6 +85,9 @@ func newRouters() {
 	r.HandleFunc("/api/order/{id}", services.UpdateOrder).Methods("PATCH", "OPTIONS")
 	r.HandleFunc("/api/product/{id}", services.DeleteOrder).Methods("DELETE", "OPTIONS")
 
+	r.HandleFunc("/api/orderHistory", services.InsertOrderHistory).Methods("POST", "OPTIONS")
+	r.HandleFunc("/api/orderHistoryToday", services.GetOrderHistoryToday).Methods("POST", "OPTIONS")
+
 	r.HandleFunc("/api/upload", uploadFile).Methods("POST")
 
 	// Create the route public
@@ -94,7 +96,8 @@ func newRouters() {
 
 	fmt.Println("Start server golang ...")
 
-	port := os.Getenv("PORT")
+	//port := os.Getenv("PORT")
+	port := "8080"
 	log.Fatal(http.ListenAndServe(":"+port, r))
 }
 
