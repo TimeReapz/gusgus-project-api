@@ -40,3 +40,19 @@ func Get(id string) (m.OrderHistory, error) {
 
 	return orderHis, nil
 }
+
+// func GetToday() (m.OrderHistory, error) {
+// 	orderHis := m.OrderHistory{}
+
+// 	_id, err := primitive.ObjectIDFromHex(id)
+// 	if err != nil {
+// 		return orderHis, err
+// 	}
+
+// 	err = collection.FindOne(ctx, bson.M{"_id": time.Now()}).Decode(&orderHis)
+// 	if err != nil {
+// 		return orderHis, err
+// 	}
+
+// 	return orderHis, nil
+// }

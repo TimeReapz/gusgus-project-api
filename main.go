@@ -86,7 +86,7 @@ func newRouters() {
 	r.HandleFunc("/api/product/{id}", services.DeleteOrder).Methods("DELETE", "OPTIONS")
 
 	r.HandleFunc("/api/orderHistory", services.InsertOrderHistory).Methods("POST", "OPTIONS")
-	r.HandleFunc("/api/orderHistoryToday", services.GetOrderHistoryToday).Methods("POST", "OPTIONS")
+	//r.HandleFunc("/api/orderHistoryToday", services.GetOrderHistoryToday).Methods("POST", "OPTIONS")
 
 	r.HandleFunc("/api/upload", uploadFile).Methods("POST")
 

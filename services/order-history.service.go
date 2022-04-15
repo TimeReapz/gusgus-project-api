@@ -36,14 +36,14 @@ func InsertOrderHistory(w http.ResponseWriter, r *http.Request) {
 	WriteResponse(w, http.StatusOK, res)
 }
 
-func GetOrderHistoryToday(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("GetOrder")
+// func GetOrderHistoryToday(w http.ResponseWriter, r *http.Request) {
+// 	fmt.Println("GetOrder")
 
-	res, err := rep.GetToday()
-	if err != nil {
-		WriteResponse(w, http.StatusBadRequest, err.Error())
-		return
-	}
+// 	res, err := rep.GetToday()
+// 	if err != nil {
+// 		WriteResponse(w, http.StatusBadRequest, err.Error())
+// 		return
+// 	}
 
-	WriteResponse(w, http.StatusOK, res)
-}
+// 	WriteResponse(w, http.StatusOK, res)
+// }
